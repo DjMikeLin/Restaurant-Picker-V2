@@ -1,22 +1,18 @@
 const express = require('express');
 const logger = require('morgan');
 const app = express();
-//const routes = require('./routes/index.js');
+const routes = require('./routes/index.js');
 
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//app.use(express.static(`${__dirname}/client/build`))
-//app.use('/api', routes)
+app.use(express.static(`${__dirname}/client/build`))
+app.use('/api', routes)
 
-/*app.get('/*', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(`${__dirname}/client/build/index.html`)
-})*/
-
-app.get('/', (req, res) => {
-    res.send("hello world");
-});
+})
 
 const PORT = process.env.PORT || 3001
 
