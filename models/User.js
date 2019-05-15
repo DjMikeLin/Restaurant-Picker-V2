@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const Users = new Schema({
     name: String,
+    pass: String,
     email: String,
-    mobile: String,
-    favRestaurants: [Schema.Types.ObjectId]
+    mobile: String
 });
 module.exports = mongoose.model('Users', Users);

@@ -4,9 +4,13 @@ const UserController = require('../controllers/UserController');
 const RestaurantController = require('../controllers/RestaurantController');
 
 //Routes for Users
-router.get('/user/:id', UserController.show);
+router.get('/users/:id', UserController.show);
+router.get('/users', UserController.index);
+router.post('/users', UserController.create);
+router.put('/users/:id', UserController.update);
+router.delete('/users/:id', UserController.delete);
 
 //Routes for Restaurants
-router.get('/restaurant/:id', RestaurantController.show);
+router.get('/restaurants/:id', RestaurantController.show);
 
 module.exports = router;
