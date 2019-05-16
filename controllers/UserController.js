@@ -14,7 +14,8 @@ const UserController = {
     },
     create: async(req, res) => {
         try{
-            if(await User.find({name: req.body.name}).length > 0){
+            const user = await User.find({name: req.body.name});
+            if(user.length > 0){
                 res.status(500).json("Username taken!");
                 return;
             }
