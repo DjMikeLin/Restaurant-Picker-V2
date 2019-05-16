@@ -14,11 +14,12 @@ class Login extends React.Component {
         e.preventDefault();
         
         const user = await getUser(this.state.loginInfo.userName);
+        //if user.data is empty no User with that username is found
+        //then check for password match also
         if(user.data.length === 0 || user.data[0].pass !== this.state.loginInfo.password){
             this.setState({errorMssg: "Wrong username or password!"}); 
             return;
         }
-             
         this.props.changeLoginStatus();
     }
 
@@ -34,7 +35,7 @@ class Login extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} name="userName" placeholder="User Name" />
-                    <input type="text" onChange={this.handleChange} name="password" placeholder="Password" />
+                    <input type="password" onChange={this.handleChange} name="password" placeholder="Password" />
                     <button>Login</button>
                 </form>
                 <p>{this.state.errorMssg}</p>
