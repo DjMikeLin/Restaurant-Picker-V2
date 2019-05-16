@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export function getUser(userName){
-    return axios.get('/
+export async function getUser(userName){
+    return await axios.get('api/users/' + userName);
 }

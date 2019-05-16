@@ -8,12 +8,13 @@ class HomePage extends React.Component {
    
     changeLoginStatus = () => {
         this.setState({loggedIn: !this.state.loggedIn});
-        console.log(this.state.loggedIn);
     }
  
     render(){
         return(
-            !this.state.loggedIn ? <Login changeLoginStatus={this.changeLoginStatus}/> : null
+            <div>
+                !this.state.loggedIn ? <Login changeLoginStatus={this.changeLoginStatus}/> : null
+            </div>
         )
     }
 }

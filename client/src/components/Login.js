@@ -1,4 +1,5 @@
 import React from 'react';
+import {getUser} from './axiosRouter';
 
 class Login extends React.Component {
     state = {
@@ -6,15 +7,23 @@ class Login extends React.Component {
             userName: '',
             password: ''
         },
-        successfulLogin: false
+        errorMssg: ''
     };
 
-    handleSubmit = e => {
+    handleSubmit = async(e) => {
         e.preventDefault();
+        
+        const user = await getUser(this.state.loginInfo.userName);
+        if(user.data.length === 0 || user.data[0].pass !== this.state.loginInfo.password){
+            this.setState({errorMssg: "Wrong username or password!"}); 
+            return;
+        }
+             
         this.props.changeLoginStatus();
     }
 
     handleChange = e => {
+        this.setState({errorMssg: ""});
         const clonedInfo = {...this.state.loginInfo};
         clonedInfo[e.target.name] = e.target.value;
         this.setState({loginInfo: clonedInfo});
@@ -22,11 +31,14 @@ class Login extends React.Component {
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" onChange={this.handleChange} name="userName" placeholder="User Name" />
-                <input type="text" name="password" placeholder="Password" />
-                <button>Login</button>
-            </form>            
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" onChange={this.handleChange} name="userName" placeholder="User Name" />
+                    <input type="text" onChange={this.handleChange} name="password" placeholder="Password" />
+                    <button>Login</button>
+                </form>
+                <p>{this.state.errorMssg}</p>
+            </div>                
         )
     }
 }
