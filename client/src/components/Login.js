@@ -5,7 +5,8 @@ class Login extends React.Component {
         loginInfo: {
             userName: '',
             password: ''
-        }
+        },
+        successfulLogin: false
     };
 
     handleSubmit = e => {

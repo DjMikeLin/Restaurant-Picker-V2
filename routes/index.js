@@ -5,10 +5,10 @@ const RestaurantController = require('../controllers/RestaurantController');
 
 //Routes for Users
 router.get('/users', UserController.index);
-router.get('/users/:id', UserController.show);
+router.get('/users/:name', UserController.show);
 router.post('/users', UserController.create);
-router.put('/users/:id', UserController.update);
-router.delete('/users/:id', UserController.delete);
+router.put('/users/:name', UserController.update);
+router.delete('/users/:name', UserController.delete);
 
 //Routes for Restaurants
 router.get('/restaurants', RestaurantController.index);

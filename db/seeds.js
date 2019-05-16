@@ -3,14 +3,14 @@ const User = require("../models/User");
 //Initial seeding for Users and Restaurants
 const initialSeed = async() => {
     const user1 = await User.create({
-        name: 'Mike Jones',
+        name: 'MikeJones',
         pass: '111111',
         email: 'ubliek23@yahoo.com',
         mobile: '(868)-454-3332'
     });  
 
     const user2 = await User.create({
-        name: 'Cardi B',
+        name: 'CardiB',
         pass: '222222',
         email: 'erere34@yahoo.com',
         mobile: '(452)-343-636'
