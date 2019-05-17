@@ -28,7 +28,7 @@ const UserController = {
     },
     update: async(req, res) => {
         try{
-            res.json(await User.findOneAndUpdate({name: req.params.name}, req.body, {new: true}));
+            res.json(await User.findOneAndUpdate({name: req.params.name}, req.body, {new: true, useFindAndModify: false}));
         } catch(err){
             console.log(err);
             res.status(500).json(err);

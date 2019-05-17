@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class UpdateProfile extends React.Component {
     state = {
@@ -26,7 +27,8 @@ class UpdateProfile extends React.Component {
     handleSubmit = e => {
        e.preventDefault();
 
-       console.log(this.state.profile.pass); 
+       this.props.updateCurrUser(this.state.profile);
+       //return <Redirect to='/' />;
     }
 
     render(){

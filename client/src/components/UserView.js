@@ -15,7 +15,7 @@ class UserView extends React.Component {
     }
 
     render(){
-    const profileComponent = () => (<UpdateProfile user={this.props.user} />);
+        const profileComponent = () => (<UpdateProfile user={this.props.user} updateCurrUser={this.props.updateCurrUser} />);
 
         return(
             <Router>
