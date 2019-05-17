@@ -20,7 +20,7 @@ class Login extends React.Component {
             this.setState({errorMssg: "Wrong username or password!"}); 
             return;
         }
-        this.props.changeLoginStatus();
+        this.props.changeLoginStatus(user.data[0].name);
     }
 
     handleChange = e => {

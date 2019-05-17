@@ -2,16 +2,18 @@ import React from 'react';
 import Login from './Login';
 import NewUser from './NewUser';
 import LoginNav from './LoginNav';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import UserView from './UserView';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 class HomePage extends React.Component {
     state = {
       loggedIn: false,
-      showLogin: true  
+      showLogin: true,
+      userName: ''  
     };
    
-    changeLoginStatus = () => {
-        this.setState({loggedIn: !this.state.loggedIn});
+    changeLoginStatus = (userName) => {
+        this.setState({loggedIn: !this.state.loggedIn, userName});
     }
 
     logOut = (e) => {
@@ -21,6 +23,8 @@ class HomePage extends React.Component {
  
     render(){
         const LoginForm = () => (<Login changeLoginStatus={this.changeLoginStatus}/>);
+        const userView = () => (<UserView logOut={this.logOut}/>);
+
         return(
             <div>
                 {
@@ -35,9 +39,12 @@ class HomePage extends React.Component {
                         </div> 
                     </Router>
                     :
-                    <div> 
-                        <button onClick={this.logOut}>Log Out</button>
-                    </div>
+                    <Router>
+                        <div>
+                            <Route exact path={'/' + this.state.userName} render={userView} />
+                            <Redirect to={'/' + this.state.userName} />
+                        </div>
+                    </Router>
                 }
             </div>
         )
