@@ -39,12 +39,13 @@ class HomePage extends React.Component {
                         </div> 
                     </Router>
                     :
-                    <Router>
+                    <UserView logOut={this.logOut} />
+                    /*<Router>
                         <div>
-                            <Route exact path={'/' + this.state.userName} render={userView} />
-                            <Redirect to={'/' + this.state.userName} />
+                            <Route exact path={'/Login/' + this.state.userName} render={userView} />
+                            <Redirect to={'/Login/' + this.state.userName} />
                         </div>
-                    </Router>
+                    </Router>*/
                 }
             </div>
         )

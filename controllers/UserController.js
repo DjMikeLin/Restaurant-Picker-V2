@@ -23,7 +23,7 @@ const UserController = {
             res.json(await User.create(req.body));
         } catch(err){
             console.log(err);
-            res.status(500).json(err);
+            res.status(500).json("Username taken!");
         }
     },
     update: async(req, res) => {
