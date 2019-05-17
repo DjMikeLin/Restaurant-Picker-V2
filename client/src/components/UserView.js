@@ -15,7 +15,7 @@ class UserView extends React.Component {
     }
 
     render(){
-    const profileComponent = () => (<UpdateProfile userName={this.props.userName} />);
+    const profileComponent = () => (<UpdateProfile user={this.props.user} />);
 
         return(
             <Router>
@@ -31,7 +31,7 @@ class UserView extends React.Component {
                                 {"Update Profile"}
                             </button>
                         </Link>
-                        <Favorites userName={this.props.userName} />
+                        <Favorites user={this.props.user} />
                     </div>
                 </div>
             </Router> 

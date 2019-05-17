@@ -1,5 +1,4 @@
 import React from 'react';
-import {getUser} from './axiosRouter';
 
 class UpdateProfile extends React.Component {
     state = {
@@ -9,14 +8,13 @@ class UpdateProfile extends React.Component {
             pass: '',
             email: '',
             mobile: '',
-            __V: ''
-        }  
+            __V: 0
+        }
     };
 
     componentDidMount = async() => {
-        //Assuming getUser only returns 1 user
-        const user = (await getUser(this.props.userName)).data[0];
-        this.setState({profile: user});
+        //Assuming this.props.user only has one element 
+        this.setState({profile: this.props.user[0]});
     }
 
     handleChange = e => {
@@ -26,7 +24,9 @@ class UpdateProfile extends React.Component {
     }
 
     handleSubmit = e => {
-        
+       e.preventDefault();
+
+       console.log(this.state.profile.pass); 
     }
 
     render(){

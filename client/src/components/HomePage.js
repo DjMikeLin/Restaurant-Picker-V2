@@ -9,11 +9,11 @@ class HomePage extends React.Component {
     state = {
       loggedIn: false,
       showLogin: true,
-      userName: ''  
+      user: [] 
     };
    
-    changeLoginStatus = (userName) => {
-        this.setState({loggedIn: !this.state.loggedIn, userName});
+    changeLoginStatus = user => {
+        this.setState({loggedIn: !this.state.loggedIn, user});
     }
 
     logOut = (e) => {
@@ -39,7 +39,7 @@ class HomePage extends React.Component {
                         </div> 
                     </Router>
                     :
-                    <UserView logOut={this.logOut} userName={this.state.userName} />
+                    <UserView logOut={this.logOut} user={this.state.user} />
                     /*<Router>
                         <div>
                             <Route exact path={'/Login/' + this.state.userName} render={userView} />
