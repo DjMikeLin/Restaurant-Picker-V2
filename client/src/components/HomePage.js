@@ -3,6 +3,7 @@ import Login from './Login';
 import NewUser from './NewUser';
 import LoginNav from './LoginNav';
 import UserView from './UserView';
+import NewRestaurant from './NewRestaurant';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import {updateUser, deleteUser} from './axiosRouter.js';
 

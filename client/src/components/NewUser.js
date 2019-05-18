@@ -17,12 +17,11 @@ class NewUser extends React.Component {
         try{
             await createUser(this.state.newUser);
         } catch(err){
-            this.setState({errorMssg: "There is already an answer by this user name!"});
+            this.setState({errorMssg: "There is already an user by this user name!"});
         }
     }
 
     handleChange = e => {
-        console.log(e.target.name, e.target.value);
         const copy = {...this.state.newUser};
         copy[e.target.name] = e.target.value;
         this.setState({newUser: copy, errorMssg: ""});

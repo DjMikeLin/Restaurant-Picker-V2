@@ -1,11 +1,14 @@
 import React from 'react';
 import {getRestaurants, deleteRestaurant} from './axiosRouter';
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
+import NewRestaurant from './NewRestaurant';
 
 class Favorites extends React.Component {
     state= {
         favorites: [],
         randomFav: '',
-        showRandom: false
+        showRandom: false,
+        redirectToAddFav: false
     };
 
     componentDidMount = async() => {
@@ -13,10 +16,12 @@ class Favorites extends React.Component {
     }
     
     randomFavorite = e => {
+        e.preventDefault();
         this.setState({showRandom: true, randomFav: this.state.favorites[Math.floor(Math.random() * this.state.favorites.length)].name});
     }
 
     delete = async(e) => {
+        e.preventDefault();
         for(let i = 0; i <= this.state.favorites.length - 1; i++){
             if(this.state.favorites[i]._id === e.target.id){
                 const copy = [...this.state.favorites];
@@ -30,27 +35,37 @@ class Favorites extends React.Component {
         await deleteRestaurant(e.target.id);
     }
 
+    addFavorite = async(e) => {
+        e.preventDefault();
+
+        this.setState({redirectToAddFav: !this.state.redirectToAddFav}); 
+    }
+
     render(){
-        console.log(this.state.favorites);
         return(
             <div>
-                <button onClick={this.randomFavorite}>Random Favorite</button>
-                <button>Add Favorite</button> 
                 {
-                    this.state.showRandom ?
-                    <p>Random Favorite: {this.state.randomFav}</p> : null
+                !this.state.redirectToAddFav ?
+                <div>
+                    <button onClick={this.randomFavorite}>Random Favorite</button>
+                    <button onClick={this.addFavorite}>Add Favorite</button> 
+                    {
+                        this.state.showRandom ?
+                        <p>Random Favorite: {this.state.randomFav}</p> : null
+                    }
+                    {
+                        this.state.favorites.map(favorite => (
+                            <div key={favorite._id}>
+                                <p>Name: {favorite.name}</p>
+                                <p>Address: {favorite.address}</p>
+                                <p>Number: {favorite.number}</p>
+                                <button onClick={this.delete} id={favorite._id}>Delete Restaurant</button>
+                            </div>
+                        ))
+                    }           
+                </div> : <NewRestaurant user={this.props.user} addFavorite={this.addFavorite} /> 
                 }
-                {
-                    this.state.favorites.map(favorite => (
-                        <div key={favorite._id}>
-                            <p>Name: {favorite.name}</p>
-                            <p>Address: {favorite.address}</p>
-                            <p>Number: {favorite.number}</p>
-                            <button onClick={this.delete} id={favorite._id}>Delete Restaurant</button>
-                        </div>
-                    ))
-                }           
-            </div> 
+            </div>
         )
     }
 }
