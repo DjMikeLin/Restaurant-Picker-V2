@@ -4,7 +4,7 @@ import NewUser from './NewUser';
 import LoginNav from './LoginNav';
 import UserView from './UserView';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import {updateUser} from './axiosRouter.js';
+import {updateUser, deleteUser} from './axiosRouter.js';
 
 class HomePage extends React.Component {
     state = {
@@ -26,6 +26,11 @@ class HomePage extends React.Component {
         await updateUser(user);
         this.setState({user: [user]});
     }
+
+    deleteAccount = async(userName) => {
+       await deleteUser(userName);
+       this.setState({loggedIn: false});
+    }
  
     render(){
         const LoginForm = () => (<Login changeLoginStatus={this.changeLoginStatus}/>);
@@ -45,7 +50,7 @@ class HomePage extends React.Component {
                         </div> 
                     </Router>
                     :
-                    <UserView updateCurrUser={this.updateCurrUser}  logOut={this.logOut} user={this.state.user} />
+                    <UserView updateCurrUser={this.updateCurrUser} deleteAccount={this.deleteAccount} logOut={this.logOut} user={this.state.user} />
                     /*<Router>
                         <div>
                             <Route exact path={'/Login/' + this.state.userName} render={userView} />

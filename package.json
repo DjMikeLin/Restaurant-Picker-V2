@@ -1,7 +1,7 @@
 {
   "name": "Restaurant-Picker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Web application to pick a random restaurant around me base on some filters",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -16,10 +16,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "concurrently": "^4.1.0",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "mongoose": "^5.4.19",
     "morgan": "^1.9.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DjMikeLin/Restaurant-Picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DjMikeLin/Restaurant-Picker/issues"
+  },
+  "homepage": "https://github.com/DjMikeLin/Restaurant-Picker#readme"
 }

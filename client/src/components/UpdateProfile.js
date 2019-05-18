@@ -10,7 +10,9 @@ class UpdateProfile extends React.Component {
             email: '',
             mobile: '',
             __V: 0
-        }
+        },
+        redirectAfterUpdate: false,
+        redirectAfterDelete: false
     };
 
     componentDidMount = async() => {
@@ -24,24 +26,40 @@ class UpdateProfile extends React.Component {
         this.setState({profile: profileCopy});
     }
 
+    redirectAfterDeletion = e => {
+        e.preventDefault();
+        
+        this.props.deleteAccount(this.state.profile.name);
+        this.setState({redirectAfterDelete: true});
+    }
+
     handleSubmit = e => {
        e.preventDefault();
 
        this.props.updateCurrUser(this.state.profile);
-       //return <Redirect to='/' />;
+       this.setState({redirectAfterUpdate: true});
     }
 
     render(){
+        if(this.state.redirectAfterUpdate)
+            return <Redirect to="/" />;
+
+        if(this.state.redirectAfterDelete)
+            return <Redirect to="/" />;
+
         return(
-            <form onSubmit={this.handleSubmit}>
-                Password:
-                <input type="password" onChange={this.handleChange}  name="pass" value={this.state.profile.pass} />
-                Email:
-                <input type="text" onChange={this.handleChange} name="email" value={this.state.profile.email} />
-                Mobile Number:
-                <input type="text" onChange={this.handleChange}  name="mobile" value={this.state.profile.mobile} />
-                <button>Update</button>
-            </form>
+            <div>
+                <button onClick={this.redirectAfterDeletion}>Delete Account</button>
+                <form onSubmit={this.handleSubmit}>
+                    Password:
+                    <input type="password" onChange={this.handleChange}  name="pass" value={this.state.profile.pass} />
+                    Email:
+                    <input type="text" onChange={this.handleChange} name="email" value={this.state.profile.email} />
+                    Mobile Number:
+                    <input type="text" onChange={this.handleChange}  name="mobile" value={this.state.profile.mobile} />
+                    <button>Update</button>
+                </form>
+            </div>
         )
     }
 }
