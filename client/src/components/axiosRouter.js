@@ -15,3 +15,7 @@ export async function updateUser(user){
 export async function deleteUser(userName){
     return await axios.delete('/api/users/' + userName);
 }
+
+export async function getRestaurants(){
+    return await axios.get('/api/restaurants');
+}

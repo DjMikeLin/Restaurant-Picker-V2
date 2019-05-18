@@ -15,7 +15,7 @@ class UpdateProfile extends React.Component {
         redirectAfterDelete: false
     };
 
-    componentDidMount = async() => {
+    componentDidMount = () => {
         //Assuming this.props.user only has one element 
         this.setState({profile: this.props.user[0]});
     }
