@@ -19,3 +19,7 @@ export async function deleteUser(userName){
 export async function getRestaurants(){
     return await axios.get('/api/restaurants');
 }
+
+export async function deleteRestaurant(id){
+    return await axios.delete('/api/restaurants/' + id);
+}

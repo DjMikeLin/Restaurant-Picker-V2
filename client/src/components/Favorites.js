@@ -1,5 +1,5 @@
 import React from 'react';
-import {getRestaurants} from './axiosRouter';
+import {getRestaurants, deleteRestaurant} from './axiosRouter';
 
 class Favorites extends React.Component {
     state= {
@@ -16,11 +16,26 @@ class Favorites extends React.Component {
         this.setState({showRandom: true, randomFav: this.state.favorites[Math.floor(Math.random() * this.state.favorites.length)].name});
     }
 
+    delete = async(e) => {
+        for(let i = 0; i <= this.state.favorites.length - 1; i++){
+            if(this.state.favorites[i]._id === e.target.id){
+                const copy = [...this.state.favorites];
+                copy.splice(i, 1);
+                console.log(copy, i);
+                this.setState({favorites: copy});
+                break;
+            }
+        }
+
+        await deleteRestaurant(e.target.id);
+    }
+
     render(){
+        console.log(this.state.favorites);
         return(
             <div>
                 <button onClick={this.randomFavorite}>Random Favorite</button>
-                
+                <button>Add Favorite</button> 
                 {
                     this.state.showRandom ?
                     <p>Random Favorite: {this.state.randomFav}</p> : null
@@ -31,8 +46,7 @@ class Favorites extends React.Component {
                             <p>Name: {favorite.name}</p>
                             <p>Address: {favorite.address}</p>
                             <p>Number: {favorite.number}</p>
-                            <button>Edit Restaurant</button>
-                            <button>Delete Restaurant</button>
+                            <button onClick={this.delete} id={favorite._id}>Delete Restaurant</button>
                         </div>
                     ))
                 }           
