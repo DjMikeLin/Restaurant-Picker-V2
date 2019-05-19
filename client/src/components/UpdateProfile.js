@@ -49,7 +49,6 @@ class UpdateProfile extends React.Component {
 
         return(
             <div>
-                <button onClick={this.redirectAfterDeletion}>Delete Account</button>
                 <form onSubmit={this.handleSubmit}>
                     Password:
                     <input type="password" onChange={this.handleChange}  name="pass" value={this.state.profile.pass} />
@@ -59,6 +58,7 @@ class UpdateProfile extends React.Component {
                     <input type="text" onChange={this.handleChange}  name="mobile" value={this.state.profile.mobile} />
                     <button>Update</button>
                 </form>
+                <button onClick={this.redirectAfterDeletion}>Delete Account</button>
             </div>
         )
     }

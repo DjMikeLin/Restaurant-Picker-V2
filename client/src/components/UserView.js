@@ -8,14 +8,12 @@ class UserView extends React.Component {
         showUpdate: false
     };     
 
-    toggleShowUpdate = e => {
-        e.preventDefault();
-
+    toggleShowUpdate = () => {
         this.setState({showUpdate: !this.state.showUpdate});
     }
 
     render(){
-        const profileComponent = () => (<UpdateProfile user={this.props.user} deleteAccount={this.props.deleteAccount} updateCurrUser={this.props.updateCurrUser} />);
+        const profileComponent = () => (<UpdateProfile toggleShowUpdate={this.toggleShowUpdate} user={this.props.user} deleteAccount={this.props.deleteAccount} updateCurrUser={this.props.updateCurrUser} />);
 
         return(
             <Router>
@@ -26,15 +24,13 @@ class UserView extends React.Component {
 
                     <button onClick={this.props.logOut}>Log Out</button>
                     <div>
-                        <Link to="/Login/Update" onClick={this.toggleShowUpdate}>
-                            <button>
-                                {"Update Profile"}
-                            </button>
-                        </Link>
-
-                        {!this.state.showUpdate ?
-                        <Favorites user={this.props.user} /> : null
+                        {
+                           !this.state.showUpdate ?
+                           <Link to="/Login/Update" onClick={this.toggleShowUpdate}>
+                               <button>Update Profile</button>
+                           </Link> : null
                         }
+                        <Favorites user={this.props.user} />
                     </div>
                 </div>
             </Router> 
