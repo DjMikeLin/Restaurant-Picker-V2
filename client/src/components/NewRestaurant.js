@@ -8,7 +8,8 @@ class NewRestaurant extends React.Component {
             address: "3230 Steve Reynolds Blvd Duluth, GA 30096",
             number: "(470) 395-6943",
             users: []
-        }
+        },
+        errorMssg: ''
     }
 
     componentDidMount = () => {
@@ -19,7 +20,14 @@ class NewRestaurant extends React.Component {
 
     handleSubmit = async(e) => {
         e.preventDefault();
+
+        if(!checkAdd(this.props.favorites, this.state.newFav.address)){
+            this.setState({errorMssg: "Already added this restaurant!"});
+            return;
+        }
+
         await createRestaurant(this.state.newFav);
+        await this.props.addFavToState();
     }
 
     handleChange = e => {
@@ -37,8 +45,17 @@ class NewRestaurant extends React.Component {
                     <input type="text" onChange={this.handleChange} name="number" value={this.state.newFav.number} />
                     <button>Create Restaurant</button> 
                 </form>
+                <p>{this.state.errorMssg}</p>
             </div>
         );
     }
 }
 export default NewRestaurant;
+
+function checkAdd(favorites, favAddress){
+    for(let i = 0; i < favorites.length; i++){
+        if(favorites[i].address === favAddress)
+            return false;
+    }
+    return true;
+}

@@ -26,7 +26,6 @@ class Favorites extends React.Component {
             if(this.state.favorites[i]._id === e.target.id){
                 const copy = [...this.state.favorites];
                 copy.splice(i, 1);
-                console.log(copy, i);
                 this.setState({favorites: copy});
                 break;
             }
@@ -39,6 +38,12 @@ class Favorites extends React.Component {
         e.preventDefault();
 
         this.setState({redirectToAddFav: !this.state.redirectToAddFav}); 
+    }
+
+    addFavToState = async() => {
+        const getFavs = (await getRestaurants()).data.filter(restaurant => restaurant.users.includes(this.props.user[0]._id));
+        //console.log(getFavs);
+        this.setState({redirectToAddFav: !this.state.redirectToAddFav, favorites: getFavs});
     }
 
     render(){
@@ -63,7 +68,7 @@ class Favorites extends React.Component {
                             </div>
                         ))
                     }           
-                </div> : <NewRestaurant user={this.props.user} addFavorite={this.addFavorite} /> 
+                </div> : <NewRestaurant favorites={this.state.favorites} addFavToState={this.addFavToState} user={this.props.user} addFavorite={this.addFavorite} /> 
                 }
             </div>
         )
