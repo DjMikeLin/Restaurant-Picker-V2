@@ -1,5 +1,6 @@
 import React from 'react';
 import {createUser} from './axiosRouter';
+import {BrowserRouter as Redirect} from 'react-router-dom';
 
 class NewUser extends React.Component {
     state = {
@@ -9,13 +10,16 @@ class NewUser extends React.Component {
             email: "sumthing23@gmail.com",
             mobile: "(765)-343-5629"
         },
-        errorMssg: ''
+        errorMssg: '',
+        redirect: false
     }
 
     handleSubmit = async(e) => {
         e.preventDefault();
         try{
             await createUser(this.state.newUser);
+            if(this.state.errorMssg === '')
+               this.setState({redirect: true}); 
         } catch(err){
             this.setState({errorMssg: "There is already an user by this user name!"});
         }
@@ -28,6 +32,8 @@ class NewUser extends React.Component {
     }
 
     render(){
+        if(this.state.redirect)
+            return <Redirect to="/" />;
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>

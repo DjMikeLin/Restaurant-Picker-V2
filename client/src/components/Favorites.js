@@ -42,7 +42,6 @@ class Favorites extends React.Component {
 
     addFavToState = async() => {
         const getFavs = (await getRestaurants()).data.filter(restaurant => restaurant.users.includes(this.props.user[0]._id));
-        //console.log(getFavs);
         this.setState({redirectToAddFav: !this.state.redirectToAddFav, favorites: getFavs});
     }
 

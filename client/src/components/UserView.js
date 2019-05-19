@@ -26,12 +26,15 @@ class UserView extends React.Component {
 
                     <button onClick={this.props.logOut}>Log Out</button>
                     <div>
-                        <Link to="/Login/Update">
+                        <Link to="/Login/Update" onClick={this.toggleShowUpdate}>
                             <button>
                                 {"Update Profile"}
                             </button>
                         </Link>
-                        <Favorites user={this.props.user} />
+
+                        {!this.state.showUpdate ?
+                        <Favorites user={this.props.user} /> : null
+                        }
                     </div>
                 </div>
             </Router> 
