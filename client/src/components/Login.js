@@ -1,5 +1,26 @@
 import React from 'react';
 import {getUser} from './axiosRouter';
+import Button from 'react-bootstrap/Button';
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+`;
+
+const StyledDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+
+const StyledP = styled.p`
+    color: red;
+    font-weight: bolder;
+    font-size: 3em;
+`;
 
 class Login extends React.Component {
     state = {
@@ -32,14 +53,14 @@ class Login extends React.Component {
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <StyledDiv>
+                <StyledForm onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} name="userName" placeholder="User Name" />
                     <input type="password" onChange={this.handleChange} name="password" placeholder="Password" />
-                    <button>Login</button>
-                </form>
-                <p>{this.state.errorMssg}</p>
-            </div>                
+                    <Button type="submit" variant="success outline-success" size="lg">Login</Button>
+                </StyledForm>
+                <StyledP>{this.state.errorMssg}</StyledP>
+            </StyledDiv>                
         )
     }
 }
