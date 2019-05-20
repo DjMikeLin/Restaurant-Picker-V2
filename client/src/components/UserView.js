@@ -2,6 +2,13 @@ import React from 'react';
 import Favorites from './Favorites';
 import UpdateProfile from './UpdateProfile';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import styled from 'styled-components'; 
+
+const StyledButton = styled(Button)`
+    display: flex;
+    justify-content: flex-end;
+`;
 
 class UserView extends React.Component {
     state = {
@@ -22,7 +29,7 @@ class UserView extends React.Component {
                         <Route exact path="/Login/Update" render={profileComponent} />
                     </Switch>
 
-                    <button onClick={this.props.logOut}>Log Out</button>
+                    <Button variant="success outline-success" size="lg" onClick={this.props.logOut}>Log Out</Button>
                     <div>
                         {
                            !this.state.showUpdate ?
