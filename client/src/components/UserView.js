@@ -5,9 +5,8 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components'; 
 
-const StyledButton = styled(Button)`
-    display: flex;
-    justify-content: flex-end;
+const StyledLogOut = styled(Button)`
+    float: right; 
 `;
 
 class UserView extends React.Component {
@@ -25,21 +24,20 @@ class UserView extends React.Component {
         return(
             <Router>
                 <div>
-                    <Switch>    
-                        <Route exact path="/Login/Update" render={profileComponent} />
-                    </Switch>
-
-                    <Button variant="success outline-success" size="lg" onClick={this.props.logOut}>Log Out</Button>
+                    <StyledLogOut variant="warning outline-danger" size="lg" onClick={this.props.logOut}>Log Out</StyledLogOut>
                     <div>
                         {
                            !this.state.showUpdate ?
                            <Link to="/Login/Update" onClick={this.toggleShowUpdate}>
-                               <button>Update Profile</button>
+                               <Button variant="success outline-success" size="lg">Update Profile</Button>
                            </Link> : null
                         }
                         <Favorites user={this.props.user} />
                     </div>
                 </div>
+                <Switch>    
+                    <Route exact path="/Login/Update" render={profileComponent} />
+                </Switch>
             </Router> 
         )
     }

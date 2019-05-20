@@ -1,5 +1,22 @@
 import React from 'react';
 import {createRestaurant} from './axiosRouter';
+import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin-top: 3em;
+    margin-left: 25%;
+`;
+
+const StyledHeader = styled.p`
+    color: red;
+    font-weight: bold;
+    text-align: center;
+`;
 
 class NewRestaurant extends React.Component {
     state = {
@@ -39,13 +56,16 @@ class NewRestaurant extends React.Component {
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <StyledForm onSubmit={this.handleSubmit}>
+                    <StyledHeader>Name: </StyledHeader>
                     <input type="text" onChange={this.handleChange} name="name" value={this.state.newFav.name} />
+                    <StyledHeader>Address: </StyledHeader>
                     <input type="text" onChange={this.handleChange} name="address" value={this.state.newFav.address} />
+                    <StyledHeader>Phone Number: </StyledHeader>
                     <input type="text" onChange={this.handleChange} name="number" value={this.state.newFav.number} />
-                    <button>Create Restaurant</button> 
-                </form>
-                <p>{this.state.errorMssg}</p>
+                    <Button type="submit" variant="success outline-success">Create Restaurant</Button> 
+                </StyledForm>
+                <StyledHeader>{this.state.errorMssg}</StyledHeader>
             </div>
         );
     }

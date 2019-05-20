@@ -1,6 +1,23 @@
 import React from 'react';
 import {createUser} from './axiosRouter';
 import {BrowserRouter as Redirect} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import styled from 'styled-components';
+
+const StyledP = styled.p`
+    color: red;
+    font-weight: bolder;
+    font-size: 2em;
+    margin-left: 35%;
+`;
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 25%;
+    width: 50%;
+`;
 
 class NewUser extends React.Component {
     state = {
@@ -36,14 +53,14 @@ class NewUser extends React.Component {
             return <Redirect to="/" />;
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <StyledForm onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} name="name" value={this.state.newUser.name} />
                     <input type="text" onChange={this.handleChange} name="pass" value={this.state.newUser.pass} />
                     <input type="text" onChange={this.handleChange} name="email" value={this.state.newUser.email} />
                     <input type="text" onChange={this.handleChange} name="mobile" value={this.state.newUser.mobile} />
-                    <button>Create Account</button> 
-                </form>
-                <p>{this.state.errorMssg}</p>
+                    <Button type="submit" variant="success outline-success" size="lg">Create Account</Button> 
+                </StyledForm>
+                <StyledP>{this.state.errorMssg}</StyledP>
             </div>
         );
     }
