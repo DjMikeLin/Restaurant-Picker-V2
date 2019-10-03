@@ -1,5 +1,5 @@
 import React from 'react';
-import Favorites from './Favorites';
+//import Favorites from './Favorites';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components'; 
@@ -19,13 +19,8 @@ class UserView extends React.Component {
 
     render(){
         return(
-            <Router>
-                <div>
-                    <div>
-                        <Favorites user={this.props.user} />
-                    </div>
-                </div>
-            </Router> 
+            <div>
+            </div>
         )
     }
 }

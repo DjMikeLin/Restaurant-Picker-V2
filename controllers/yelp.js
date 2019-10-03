@@ -1,4 +1,4 @@
-const apiKey = require('../yelpAoiCred.js').APIKey;
+const apiKey = require('./yelpAoiCred.js').APIKey;
 const yelp = require('yelp-fusion');
 
 const getRandomRestraunt = () => {
@@ -23,5 +23,3 @@ const getRandomRestraunt = () => {
 module.exports = {
     getRandomRestraunt
 }
-
-
