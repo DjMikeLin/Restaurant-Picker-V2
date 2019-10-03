@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import HomePage from './components/HomePage';
+import UserView from './components/UserView';
 
 class App extends Component {
   render() {
     return (
       <main>
-        <HomePage /> 
+        <UserView /> 
       </main>
     );
   }
