@@ -1,6 +1,6 @@
 const yelp = require('./yelp.js');
 
-yelp.getRandomRestraunt()
+yelp.getRandomRestraunt('duluth, ga')
     .then(res => {
         console.log(res);
     });

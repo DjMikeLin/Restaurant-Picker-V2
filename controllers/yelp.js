@@ -1,10 +1,10 @@
 const apiKey = require('./yelpAoiCred.js').APIKey;
 const yelp = require('yelp-fusion');
 
-const getRandomRestraunt = () => {
+const getRandomRestaurant = (location) => {
     const searchRequest = {
-      term:'Four Barrel Coffee',
-      location: 'san francisco, ca'
+      //term:'Four Barrel Coffee',
+      location
     };
 
     const client = yelp.client(apiKey);
@@ -21,5 +21,5 @@ const getRandomRestraunt = () => {
 }
 
 module.exports = {
-    getRandomRestraunt
+    getRandomRestaurant
 }
