@@ -4,22 +4,16 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components'; 
 
-const StyledLogOut = styled(Button)`
-    float: right; 
-`;
-
 class UserView extends React.Component {
     state = {
-        showUpdate: false
+    
     };     
-
-    toggleShowUpdate = () => {
-        this.setState({showUpdate: !this.state.showUpdate});
-    }
 
     render(){
         return(
             <div>
+                <input type="text" name="location" placeholder="Enter Location"></input>
+                <Button>Find Random Restaurant In Area</Button>                  
             </div>
         )
     }
