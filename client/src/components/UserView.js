@@ -7,7 +7,11 @@ import {getRandomRestaurant} from './axiosRouter';
 
 class UserView extends React.Component {
     state = {
-        location: '' 
+        location: '',
+        locationInfo: {
+            name: 'michael' 
+        },
+        showInfo: false 
     };     
 
     findRestaurant = async(location) => {
@@ -22,17 +26,26 @@ class UserView extends React.Component {
 
     handleSubmit = async(e) => {
         e.preventDefault();
-    
-        console.log((await this.findRestaurant(this.state.location)).data); 
+   
+        let locationInfoCopy = {...this.state.locationInfo};
+        locationInfoCopy = (await this.findRestaurant(this.state.location)).data;
+        this.setState({locationInfo: JSON.parse(locationInfoCopy)}); 
     }
 
     render(){
+        console.log(this.state.locationInfo);
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} name="location" placeholder="Enter Location"></input>
                     <Button type="submit" variant="success outline-success" size="lg">Find Random Restaurant In Area</Button> 
-                </form>                 
+                </form>
+
+                <div>
+                    <h1>{this.state.locationInfo.name}</h1>
+                    <h3>{this.state.locationInfo.is_closed}</h3>
+                    <a href={this.state.locationInfo.url}></a>
+                </div>                 
             </div>
         )
     }
