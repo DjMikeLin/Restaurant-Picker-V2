@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export async function getRandomRestaurant(){
-    return await axios.get('/api/restaurants');
+export async function getRandomRestaurant(location){
+    return await axios.get('/api/restaurants/' + location);
 }

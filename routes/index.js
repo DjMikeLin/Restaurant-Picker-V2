@@ -3,6 +3,6 @@ const router = express.Router();
 const RestaurantController = require('../controllers/RestaurantController');
 
 //Routes for Restaurants
-router.get('/restaurants', RestaurantController.randomRestaurant);
+router.get('/restaurants/:location', RestaurantController.randomRestaurant);
 
 module.exports = router;
