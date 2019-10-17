@@ -31,7 +31,7 @@ class UserView extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" onChange={this.handleChange} name="location" placeholder="Enter Location"></input>
-                    <Button>Find Random Restaurant In Area</Button> 
+                    <Button type="submit" variant="success outline-success" size="lg">Find Random Restaurant In Area</Button> 
                 </form>                 
             </div>
         )
