@@ -41,7 +41,6 @@ class UserView extends React.Component {
     }
 
     render(){
-        console.log(this.state.locationInfo);
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>

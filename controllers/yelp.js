@@ -1,11 +1,12 @@
-const apiKey = require('./yelpAoiCred.js').APIKey;
+require('dotenv').config();
+const apiKey = process.env.APIKey;
 const yelp = require('yelp-fusion');
 //Get random location in some city and state in the form of "atlanta, ga"
 const getRandomRestaurant = (location) => {
     const searchRequest = {
       location
     };
-
+    
     const client = yelp.client(apiKey);
 
     return client.search(searchRequest).then(response => {
