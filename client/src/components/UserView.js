@@ -13,6 +13,21 @@ const StyledInput = styled.input`
     text-align: center;
 `;
 
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+const StyledCategories = styled.div`
+    display: flex;
+`;
+
+const SingleCategory = styled.h4`
+    margin-left: .5em;
+`;
+
 class UserView extends React.Component {
     state = {
         location: '',
@@ -58,18 +73,18 @@ class UserView extends React.Component {
 
                 {
                    this.state.showInfo ? 
-                    <div>
-                        <h1>{this.state.locationInfo.name}</h1>
-                        <h3>{this.state.locationInfo.is_closed ? "Closed" : "Open"}</h3>
-                        <h3>Categories</h3>
-                        {
-                            this.state.locationInfo.categories.map(category => <h4>{category.title}</h4>)
-                        }
-                        <h3>{this.state.locationInfo.display_phone}</h3>
-                        <h3>{this.state.locationInfo.price}</h3>
-                        <h3>{this.state.locationInfo.rating}</h3>
-                        <h3>{this.state.locationInfo.review_count}</h3> 
-                        <h3>Location</h3>
+                    <Wrapper>
+                        <a href={this.state.locationInfo.url}>
+                            <h1>{this.state.locationInfo.name}</h1>
+                        </a>
+                        <h3>This Restaurant is {this.state.locationInfo.is_closed ? "Closed" : "Open"} now</h3>
+                        <StyledCategories>
+                            <h4>Categories:</h4>
+                            {
+                                this.state.locationInfo.categories.map(category => <SingleCategory>{category.title} </SingleCategory>)
+                            }
+                        </StyledCategories>
+                        <h3>Location:</h3>
                         <h4>{
                             this.state.locationInfo.location.address1 + ' ' +
                             this.state.locationInfo.location.address2 + ' ' +
@@ -77,8 +92,11 @@ class UserView extends React.Component {
                             this.state.locationInfo.location.city + ' ' +
                             this.state.locationInfo.location.country        
                         }</h4>
-                        <a href={this.state.locationInfo.url}>Yelp Link</a>
-                    </div> : null
+                        <h3>Phone Number: {this.state.locationInfo.display_phone}</h3>
+                        <h3>Price Range: {this.state.locationInfo.price}</h3>
+                        <h3>Rating: {this.state.locationInfo.rating}</h3>
+                        <h3>Review Count: {this.state.locationInfo.review_count}</h3> 
+                    </Wrapper> : null
                 }                 
             </div>
         )
