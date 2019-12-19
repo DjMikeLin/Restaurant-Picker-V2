@@ -1,9 +1,17 @@
 import React from 'react';
 //import Favorites from './Favorites';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import styled from 'styled-components'; 
 import {getRandomRestaurant} from './axiosRouter';
+
+const StyledForm = styled.form`
+    display: flex;      
+    flex-direction: column;          
+`;
+
+const StyledInput = styled.input`
+    text-align: center;
+`;
 
 class UserView extends React.Component {
     state = {
@@ -43,10 +51,10 @@ class UserView extends React.Component {
     render(){
         return(
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" onChange={this.handleChange} name="location" placeholder="Enter Location"></input>
+                <StyledForm onSubmit={this.handleSubmit}>
+                    <StyledInput type="text" onChange={this.handleChange} name="location" placeholder="Enter Location"></StyledInput>
                     <Button type="submit" variant="success outline-success" size="lg">Find Random Restaurant In Area</Button> 
-                </form>
+                </StyledForm>
 
                 {
                    this.state.showInfo ? 
